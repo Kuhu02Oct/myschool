@@ -33,13 +33,12 @@
     <!-- Home Section -->
     <!-- Launch Slideshow (displayed on site load) -->
     <div id="launchSlideshow" class="launch-slideshow" role="dialog" aria-label="Welcome slideshow" aria-modal="true">
+        <!-- Preloader shown while images load (moved outside inner container so it's visible immediately) -->
+        <div class="preloader" role="status" aria-label="Loading slideshow">
+            <div class="spinner" aria-hidden="true"></div>
+            <div class="preloader-text">Preparing highlights...</div>
+        </div>
         <div class="slideshow-inner">
-            <!-- Preloader shown while images load -->
-            <div class="preloader" role="status" aria-label="Loading slideshow">
-                <div class="spinner" aria-hidden="true"></div>
-                <div class="preloader-text">Preparing highlights...</div>
-            </div>
-
             <!-- Slides will be injected here by JavaScript -->
             <div class="slideshow-slides" aria-live="polite"></div>
 
