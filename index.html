@@ -15,6 +15,7 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#activities" class="nav-link">Activities</a></li>
                 <li><a href="#about" class="nav-link">About Us</a></li>
                 <li><a href="#academics" class="nav-link">Academics</a></li>
                 <li><a href="#admissions" class="nav-link">Admissions</a></li>
@@ -30,6 +31,32 @@
     </nav>
 
     <!-- Home Section -->
+    <!-- Launch Slideshow (displayed on site load) -->
+    <div id="launchSlideshow" class="launch-slideshow" role="dialog" aria-label="Welcome slideshow" aria-modal="true">
+        <div class="slideshow-inner">
+            <!-- Preloader shown while images load -->
+            <div class="preloader" role="status" aria-label="Loading slideshow">
+                <div class="spinner" aria-hidden="true"></div>
+                <div class="preloader-text">Preparing highlights...</div>
+            </div>
+
+            <!-- Slides will be injected here by JavaScript -->
+            <div class="slideshow-slides" aria-live="polite"></div>
+
+            <!-- Slideshow caption / branding -->
+            <div class="slideshow-caption">
+                <h1>S D Memorial Sanskar Public School</h1>
+                <p class="slideshow-tagline">Building Bright Futures, One Student at a Time</p>
+            </div>
+
+            <!-- Close button (user can close temporarily) -->
+            <button class="slideshow-close" aria-label="Close slideshow">Close</button>
+
+            <!-- Indicators will be injected here -->
+            <div class="slideshow-indicators" role="tablist" aria-label="Slideshow indicators"></div>
+        </div>
+    </div>
+
     <section id="home" class="section home-section">
         <div class="home-content">
             <h2>Welcome to S D Memorial Sanskar Public School</h2>
@@ -48,6 +75,83 @@
             <button class="cta-button" onclick="document.getElementById('admissions').scrollIntoView({behavior: 'smooth'});">
                 Apply Now
             </button>
+        </div>
+    </section>
+
+    <!-- Student Activities Gallery Section -->
+    <section id="activities" class="section activities-section">
+        <div class="container">
+            <h2>Student Activities Gallery</h2>
+            <p class="section-subtitle">Celebrating Learning, Creativity, and Growth</p>
+            
+            <!-- Gallery Carousel Container -->
+            <div class="gallery-wrapper">
+                <div class="gallery-carousel">
+                    <!-- Activity Card 1: Practical Work -->
+                    <div class="activity-card">
+                        <div class="card-image-wrapper">
+                            <img src="images/practical-work.jpg" alt="Students doing practical work" class="card-image">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Practical Work</h3>
+                            <p>Hands-on learning experiences where students engage in laboratory experiments and project-based activities to understand scientific concepts.</p>
+                        </div>
+                    </div>
+
+                    <!-- Activity Card 2: Sports & Games -->
+                    <div class="activity-card">
+                        <div class="card-image-wrapper">
+                            <img src="images/sports-games.jpg" alt="Students playing sports and games" class="card-image">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Sports & Games</h3>
+                            <p>Active participation in various sports and games to develop physical fitness, teamwork, and competitive spirit among our students.</p>
+                        </div>
+                    </div>
+
+                    <!-- Activity Card 3: Rhymes & Class Activities -->
+                    <div class="activity-card">
+                        <div class="card-image-wrapper">
+                            <img src="images/rhymes-activities.jpg" alt="Students doing rhymes and class activities" class="card-image">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Rhymes & Activities</h3>
+                            <p>Creative expression through rhymes, poetry, and interactive class activities that make learning fun and engaging for all students.</p>
+                        </div>
+                    </div>
+
+                    <!-- Activity Card 4: Classroom Learning -->
+                    <div class="activity-card">
+                        <div class="card-image-wrapper">
+                            <img src="images/classroom-learning.jpg" alt="Classroom learning activities" class="card-image">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Classroom Learning</h3>
+                            <p>Interactive classroom sessions combining traditional teaching methods with modern educational techniques for comprehensive student development.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Navigation Buttons -->
+                <button class="gallery-nav-btn gallery-prev" aria-label="Previous activity">
+                    <span>&#10094;</span>
+                </button>
+                <button class="gallery-nav-btn gallery-next" aria-label="Next activity">
+                    <span>&#10095;</span>
+                </button>
+            </div>
+
+            <!-- Gallery Indicators (Dots) -->
+            <div class="gallery-indicators">
+                <span class="indicator active" data-slide="0"></span>
+                <span class="indicator" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+                <span class="indicator" data-slide="3"></span>
+            </div>
         </div>
     </section>
 
@@ -182,8 +286,8 @@
                 <div class="admission-contact">
                     <h3>Admissions Contact</h3>
                     <div class="contact-info">
-                        <p><strong>Phone:</strong> +91-9876-543-210</p>
-                        <p><strong>Email:</strong> admissions@sdmss.edu.in</p>
+                        <p><strong>Phone:</strong> +91-7779911133, +91-9341111564</p>
+                        <p><strong>Email:</strong> sdmemorialsanskarpublicscholl@gmail.com</p>
                         <p><strong>Office Hours:</strong> Monday to Friday, 9:00 AM to 4:00 PM</p>
                         <p><strong>Holidays:</strong> Saturday and Sunday</p>
                     </div>
@@ -201,20 +305,28 @@
                     <h3>School Information</h3>
                     <div class="info-item">
                         <h4>📍 Address</h4>
-                        <p>S D Memorial Sanskar Public School<br>
-                        123 Education Avenue<br>
-                        New Delhi, Delhi 110015<br>
-                        India</p>
+                        <p>Ishapur Mahavir Asthan (Buxar)</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>👔 School President</h4>
+                        <p>Mr. Ritesh Kumar Tiwari — Software Engineer (10 years' experience in IT industry)</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>🧭 School Coordinator</h4>
+                        <p>Pankaj Kumar Tiwari</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>👤 Principal</h4>
+                        <p>Mr. Shiv Kumar Chaudhary</p>
                     </div>
                     <div class="info-item">
                         <h4>📞 Phone</h4>
-                        <p>Main: +91-11-XXXX-XXXX<br>
-                        Admissions: +91-9876-543-210</p>
+                        <p>7779911133<br>
+                        9341111564</p>
                     </div>
                     <div class="info-item">
                         <h4>📧 Email</h4>
-                        <p>info@sdmss.edu.in<br>
-                        admissions@sdmss.edu.in</p>
+                        <p>sdmemorialsanskarpublicscholl@gmail.com</p>
                     </div>
                     <div class="info-item">
                         <h4>⏰ School Hours</h4>

@@ -213,10 +213,101 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// ===== Student Activities Gallery - Carousel Functionality =====
+// Handles auto-sliding, manual navigation, and indicator functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Get gallery elements
+    const carousel = document.querySelector('.gallery-carousel');
+    const cards = document.querySelectorAll('.activity-card');
+    const prevBtn = document.querySelector('.gallery-prev');
+    const nextBtn = document.querySelector('.gallery-next');
+    const indicators = document.querySelectorAll('.indicator');
+    
+    // Gallery state variables
+    let currentSlide = 0;
+    let slideCount = cards.length;
+    let autoSlideInterval = null;
+    const autoSlideDuration = 5000; // Auto-slide every 5 seconds
+    
+    // Function to update carousel position
+    function updateCarousel(index) {
+        // Ensure index is within bounds
+        if (index >= slideCount) {
+            currentSlide = 0;
+        } else if (index < 0) {
+            currentSlide = slideCount - 1;
+        } else {
+            currentSlide = index;
+        }
+        
+        // Move carousel to the correct position
+        const offset = currentSlide * 100;
+        carousel.style.transform = `translateX(-${offset}%)`;
+        
+        // Update indicator dots
+        indicators.forEach((dot, idx) => {
+            if (idx === currentSlide) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+    
+    // Function to go to next slide
+    function nextSlide() {
+        updateCarousel(currentSlide + 1);
+        resetAutoSlide();
+    }
+    
+    // Function to go to previous slide
+    function prevSlide() {
+        updateCarousel(currentSlide - 1);
+        resetAutoSlide();
+    }
+    
+    // Function to start auto-sliding
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, autoSlideDuration);
+    }
+    
+    // Function to reset auto-slide timer
+    function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        startAutoSlide();
+    }
+    
+    // Event listeners for navigation buttons
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+    
+    // Event listeners for indicator dots
+    indicators.forEach((dot, index) => {
+        dot.addEventListener('click', function() {
+            updateCarousel(index);
+            resetAutoSlide();
+        });
+    });
+    
+    // Pause auto-slide on hover (for desktop users)
+    carousel.addEventListener('mouseenter', function() {
+        clearInterval(autoSlideInterval);
+    });
+    
+    // Resume auto-slide when mouse leaves
+    carousel.addEventListener('mouseleave', function() {
+        startAutoSlide();
+    });
+    
+    // Initialize carousel with first slide and start auto-sliding
+    updateCarousel(0);
+    startAutoSlide();
+});
+
 // ===== Keyboard Navigation =====
 // Navigate between sections using arrow keys
 document.addEventListener('keydown', function(event) {
-    const sections = ['home', 'about', 'academics', 'admissions', 'contact'];
+    const sections = ['home', 'activities', 'about', 'academics', 'admissions', 'contact'];
     const current = window.location.hash.slice(1) || 'home';
     const currentIndex = sections.indexOf(current);
     
@@ -238,3 +329,148 @@ document.addEventListener('keydown', function(event) {
 console.log('%cWelcome to S D Memorial Sanskar Public School', 'color: #1e3a8a; font-size: 24px; font-weight: bold;');
 console.log('%cBuilding Bright Futures, One Student at a Time', 'color: #059669; font-size: 16px;');
 console.log('%cVisit our website for more information about admissions and academics.', 'color: #6b7280; font-size: 14px;');
+
+/* ===== Launch Slideshow Script ===== */
+// Uses local image filenames from the images folder to show a fullscreen flash
+// Images are defined below (added programmatically from workspace)
+document.addEventListener('DOMContentLoaded', function() {
+    // List of image filenames to use in the slideshow (relative to project root)
+    const slideshowImages = [
+        'images/Image2.jpeg',
+        'images/Image3.jpeg',
+        'images/Image4.jpeg',
+        'images/Image5.jpeg',
+        'images/Image6.jpeg',
+        'images/Image7.jpeg',
+        'images/School1.jpg.jpeg'
+    ];
+
+    // Configuration
+    const slideInterval = 1000; // 1 second per slide (requested)
+    const slideshowRoot = document.getElementById('launchSlideshow');
+    if (!slideshowRoot) return; // nothing to do if element missing
+
+    const slidesContainer = slideshowRoot.querySelector('.slideshow-slides');
+    const indicatorsContainer = slideshowRoot.querySelector('.slideshow-indicators');
+    const closeBtn = slideshowRoot.querySelector('.slideshow-close');
+
+    let current = 0;
+    let timer = null;
+
+    // Helper: create slide element for each image
+    slideshowImages.forEach((src, idx) => {
+        const slide = document.createElement('div');
+        slide.className = 'slideshow-slide';
+
+        // Accessible image element with alt text derived from filename
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `School image ${idx + 1}`;
+
+        slide.appendChild(img);
+        slidesContainer.appendChild(slide);
+
+        // Indicator dot
+        const dot = document.createElement('button');
+        dot.className = 'slideshow-dot';
+        dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
+        dot.addEventListener('click', () => goToSlide(idx));
+        indicatorsContainer.appendChild(dot);
+    });
+
+    const total = slideshowImages.length;
+
+    // Move slideshow to a specific slide index
+    function goToSlide(index) {
+        current = (index + total) % total;
+        const offset = current * 100;
+        slidesContainer.style.transform = `translateX(-${offset}%)`;
+        updateIndicators();
+        restartTimer();
+    }
+
+    // Update indicator visual state
+    function updateIndicators() {
+        const dots = indicatorsContainer.querySelectorAll('.slideshow-dot');
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    // Advance to next slide
+    function nextSlide() {
+        goToSlide(current + 1);
+    }
+
+    // Start automatic slideshow
+    function startTimer() {
+        timer = setInterval(nextSlide, slideInterval);
+    }
+
+    // Restart timer
+    function restartTimer() {
+        clearInterval(timer);
+        startTimer();
+    }
+
+    // Close / hide slideshow and clean up
+    function closeSlideshow() {
+        clearInterval(timer);
+        slideshowRoot.classList.add('hidden');
+        slideshowRoot.setAttribute('aria-hidden', 'true');
+    }
+
+    // Hook up close action
+    closeBtn.addEventListener('click', closeSlideshow);
+
+    // Keyboard support: Esc to close, Left/Right for manual navigation
+    slideshowRoot.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeSlideshow();
+        if (e.key === 'ArrowLeft') goToSlide(current - 1);
+        if (e.key === 'ArrowRight') goToSlide(current + 1);
+    });
+
+    // Make the slideshow focusable and focus it for keyboard users
+    slideshowRoot.tabIndex = -1;
+    slideshowRoot.focus();
+
+    // Preload images, show preloader until images are loaded (or timeout)
+    const preloader = slideshowRoot.querySelector('.preloader');
+    const slides = slidesContainer.querySelectorAll('.slideshow-slide img');
+
+    // Wait until all images are loaded or timeout (max 3000ms)
+    let loadedCount = 0;
+    const maxWait = 3000; // max wait time for preload in ms
+    let preloadTimedOut = false;
+
+    function checkAllLoaded() {
+        if (loadedCount >= slides.length || preloadTimedOut) {
+            // Hide preloader and reveal slideshow with entrance animation
+            if (preloader) preloader.style.display = 'none';
+            const inner = slideshowRoot.querySelector('.slideshow-inner');
+            if (inner) inner.classList.add('show');
+            // Initialize first slide and start
+            goToSlide(0);
+            startTimer();
+        }
+    }
+
+    // Attach load listeners
+    slides.forEach(img => {
+        if (img.complete) {
+            loadedCount++;
+            checkAllLoaded();
+        } else {
+            img.addEventListener('load', function() {
+                loadedCount++;
+                checkAllLoaded();
+            });
+            img.addEventListener('error', function() {
+                // Treat error as loaded to avoid blocking
+                loadedCount++;
+                checkAllLoaded();
+            });
+        }
+    });
+
+    // Fallback timeout to avoid blocking slideshow forever
+    setTimeout(function() { preloadTimedOut = true; checkAllLoaded(); }, maxWait);
+});
