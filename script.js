@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     // Configuration
-    const slideInterval = 1000; // 1 second per slide (requested)
+    const slideInterval = 4000; // 4 seconds per slide (updated)
     const slideshowRoot = document.getElementById('launchSlideshow');
     if (!slideshowRoot) return; // nothing to do if element missing
 
