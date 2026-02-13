@@ -291,7 +291,7 @@ body {
 
 .card-photo {
     width: 100%;
-    height: 240px;
+    height: 320px;
     background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
     display: flex;
     align-items: center;
@@ -304,9 +304,16 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%;
+    object-position: center ;
     display: block;
 }
+.leader-photo-coordinator {
+    object-position: center 10%;
+}
+html {
+    scroll-behavior: smooth;
+}
+
 
 .card-body {
     padding: 2rem;
@@ -667,6 +674,7 @@ body {
     gap: 0.8rem;
     padding-top: 2rem;
 }
+
 
 .indicator {
     width: 12px;
@@ -1471,6 +1479,103 @@ body {
         width: 28px;
     }
 }
+/* ================= MOBILE PHOTO FIX ================= */
+@media (max-width: 768px) {
+
+    .card-photo {
+        height: auto;        /* allow image natural height */
+        aspect-ratio: 3/4;   /* portrait ratio (perfect for people photos) */
+    }
+
+    .leader-photo {
+        object-fit: contain; /* show full face */
+        background: #f5f7fb; /* soft background instead of crop */
+        padding: 8px;
+    }
+
+}
+
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .footer,
+    .cta-button,
+    .submit-btn {
+        display: none;
+    }
+
+    .section {
+        padding: 1rem;
+    }
+
+    }
+
+    /* Gallery Styles for Mobile */
+    .activities-section {
+        padding: 2rem 0;
+    }
+
+    .activities-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+    }
+
+    .gallery-wrapper {
+        padding: 0 1rem;
+    }
+
+    .gallery-nav-btn {
+        padding: 0.6rem 0.5rem;
+        min-width: 35px;
+        min-height: 35px;
+        font-size: 1rem;
+    }
+
+    .gallery-prev {
+        margin-left: 0.5rem;
+    }
+
+    .gallery-next {
+        margin-right: 0.5rem;
+    }
+
+    .card-image-wrapper {
+        height: 200px;
+    }
+
+    .card-content {
+        padding: 1rem;
+    }
+
+    .card-content h3 {
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .card-content p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .gallery-indicators {
+        gap: 0.6rem;
+        padding-top: 1.5rem;
+    }
+
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+
+    .indicator.active {
+        width: 28px;
+    }
+
 
 /* Print Styles */
 @media print {
