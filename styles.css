@@ -1027,6 +1027,88 @@ html {
     font-size: 0.95rem;
 }
 
+/* Facebook icon and link */
+.facebook-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: opacity 0.2s ease;
+}
+.facebook-link:hover {
+    opacity: 0.9;
+}
+.contact-section .facebook-link {
+    color: #1877F2;
+}
+.footer .facebook-link {
+    color: var(--white);
+}
+.facebook-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.facebook-icon svg {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+.contact-section .facebook-icon svg {
+    fill: #1877F2;
+}
+.footer .facebook-icon svg {
+    fill: var(--white);
+}
+
+/* Instagram icon and link */
+.instagram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: opacity 0.2s ease;
+}
+.instagram-link:hover {
+    opacity: 0.9;
+}
+.contact-section .instagram-link {
+    color: #E4405F;
+}
+.footer .instagram-link {
+    color: var(--white);
+}
+.instagram-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.instagram-icon svg {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+.contact-section .instagram-icon svg {
+    fill: #E4405F;
+}
+.footer .instagram-icon svg {
+    fill: var(--white);
+}
+.footer-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+.footer-social-sep {
+    opacity: 0.7;
+}
+
 /* ===== Animation Keyframes ===== */
 @keyframes fadeInDown {
     from {
